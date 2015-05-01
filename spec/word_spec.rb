@@ -29,4 +29,19 @@ describe(Word) do
       expect(Word.all()).to(eq([]))
     end
   end
+
+  describe("#word") do
+    it("returns the word called") do
+      test_word = Word.new({:word => "Book"})
+      expect(test_word.word()).to(eq("Book"))
+    end
+  end
+
+  describe("#id") do
+    it("returns the id of the word called") do
+      test_word = Word.new({:word => "Book"})
+      test_word.save()
+      expect(test_word.id()).to(eq(1))
+    end
+  end
 end
