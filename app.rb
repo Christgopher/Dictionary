@@ -18,9 +18,10 @@ get('/words') do
 end
 
 post('/words') do
-  #
-  #
-  #
+  word = params.fetch('word')
+  @word = Word.new(:word => word)
+  @word.save()
+  @words = Word.all
   erb(:success)
 end
 
