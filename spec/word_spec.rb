@@ -1,5 +1,6 @@
 require('rspec')
 require('word')
+require('definition')
 
 describe(Word) do
 
@@ -42,6 +43,23 @@ describe(Word) do
       test_word = Word.new({:word => "Book"})
       test_word.save()
       expect(test_word.id()).to(eq(1))
+    end
+  end
+
+  describe("#add_definition") do
+    it("adds the definition to a word") do
+      test_word = Word.new({:word => "Book"})
+      test_definition = Definition.new({:definition => "A thing that you read"})
+      test_word.add_definition(test_definition)
+      expect(test_word.definitions()).to(eq([test_definition]))
+    end
+  end
+
+  describe(".find") do
+    it("finds a word based on its id") do
+      test_word = Word.new({:word => "Book"})
+      test_word.save()
+      expect(Word.find(test_word.id())).to(eq(test_word))
     end
   end
 end
