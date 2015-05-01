@@ -12,4 +12,13 @@ describe('the dictionary website paths', :type => :feature) do
     click_link('Look at words')
     expect(page).to have_content('Book')
   end
+  it('adds a definition to a word') do
+    visit('/words')
+    click_link('Book')
+    fill_in('definition', :with => 'a thing that you read')
+    click_button('Add Definition')
+    click_link('Look at words')
+    click_link('Book')
+    expect(page).to have_content('a thing that you read')
+  end
 end
